@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  news-data-process:
+    image: news-data-process
+    container_name: news-data-process
+    volumes:
+      - ./_shared/news_daily.json:/temp/news_daily.json:ro
+    environment:
+      TZ: Asia/Bangkok
+    env_file:
+      - .env
+    command: [ "python", "./run_news_google.py" ]

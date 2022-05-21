@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  news_latest:
+    image: news-data-process
+    container_name: news_latest
+    environment:
+      TZ: Asia/Bangkok
+    env_file:
+      - .env
+    command: [ "python", "./news_latest.py" ]

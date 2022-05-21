@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  twitter-data-process:
+    image: twitter-data-process
+    container_name: twitter-data-process
+#    volumes:
+#      - ./_shared/anomaly_area.csv:/temp/anomaly_area.csv:ro
+    environment:
+      TZ: Asia/Bangkok
+    env_file:
+      - .env
+    command: [ "python", "./run_tw_by_hashtags.py" ]

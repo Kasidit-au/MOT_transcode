@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  news-data-etl-1:
+    image: news-data-process
+    container_name: news-data-etl-1
+    volumes:
+      - ./_shared/news_daily.json:/temp/news_daily.json:ro
+    environment:
+      TZ: Asia/Bangkok
+    env_file:
+      - .env
+    command: [ "python", "./run_save_to_es.py" ]
+
+  news-data-etl-2:
+    image: news-data-process
+    container_name: news-data-etl-2
+#    volumes:
+#      - ./_shared/anomaly_area.csv:/temp/anomaly_area.csv:ro
+    environment:
+      TZ: Asia/Bangkok
+    env_file:
+      - .env
+    command: [ "python", "./run_etl_es_to_db.py" ]
+
+  news-rss-to-db:
+    image: news-data-process
+    container_name: news-rss-to-db
+    environment:
+      TZ: Asia/Bangkok
+    env_file:
+      - .env
+    command: [ "python", "./rss_to_db.py" ]

@@ -1,0 +1,11 @@
+python-dotenv
+peewee==3.14.0
+pymysql
+elasticsearch
+tweepy
+pymysql
+pythainlp
+bs4
+requests
+lxml
+urllib3
